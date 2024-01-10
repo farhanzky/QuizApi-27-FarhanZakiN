@@ -67,11 +67,29 @@ exports.delete = async (req, res) => {
                 }); 
         } catch (error) {
                 res.status(500).json({
-                        message: error.message ||"some error accurred while retrieving quiz",
+                        message: error.message || "some error accurred while retrieving quiz",
                         data: null,
                 });
         }
 }
+
+// mengambil data sesuai id yang dikirimkan
+exports.findOne = async (req, res) => {
+        const id = req.params.id
+        try  {
+                const quiz = await Quiz.findByPk(id, { rejectOnEmpty: true })
+                res.json({
+                        message: `quizzes retrivied successfully with categoryId=${id}.`,
+                        data: quiz,
+                });
+        } catch (error) {
+                res.status(500).json({
+                        message: error.message || "some error accurred while retrieving quiz",
+                        data: null,
+                });
+        }
+}
+
 
 // menampilkan atau mengambil semua data quiz berdasarkan category tertentu
 exports.getByCategoryId = async (req, res) => {
