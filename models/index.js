@@ -1,4 +1,3 @@
-const { SequelizeMethod } = require('sequelize/types/utils');
 const dbConfig = require('../config/db');
 const Sequelize = require('sequelize');
 const sequelize = new Sequelize(
